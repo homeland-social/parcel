@@ -1,0 +1,42 @@
+version: "3.6"
+
+x-default-deploy: &default-deploy
+  replicas: 1
+  restart_policy:
+    condition: on-failure
+    delay: 5s
+    max_attempts: 3
+    window: 120s
+  update_config:
+    parallelism: 1
+    delay: 10s
+    order: stop-first
+
+services:
+  haproxy:
+    image: haproxytech/haproxy-alpine:2.6
+    deploy:
+      <<: *default-deploy
+      resources:
+        reservations:
+          memory: 512m
+        limits:
+          memory: 512m
+    logging:
+      options:
+        max-file: 3
+        max-size: 10m
+    networks:
+      - public
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    configs:
+      - source: haproxy_config
+        target: /etc/haproxy/haproxy.cfg
+        mode: 0444
+
+configs:
+  haproxy_config:
+    file: example.cfg

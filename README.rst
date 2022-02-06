@@ -36,9 +36,15 @@ an example ``manifest.json`` might look like:
       "name": "example",
       "author": "btimby@gmail.com",
       "version": "0.9.8",
-      "image": "shantysocial/echo",
-      "image_tag": "12934324",
       "service_definition": "service.yml",
+      "requires": [
+        "other-service-2.3",
+        "and-another-1.1"
+      ],
+      "provides": [
+        "echo-server-1.0"
+      ],
+      "conflicts": [],
       "variables": {
       },
       "settings": [
@@ -136,7 +142,7 @@ preparing pacels for deployment.
     p.configure(config, settings)
 
     # Save the .yml and supporting files in given directory.
-    p.write('/path/for/output/')
+    p.generate('/path/for/output/')
 
     # Deploy the service.
     docker.swarm.deploy('/path/for/output/example.yml')

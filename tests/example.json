@@ -1,0 +1,29 @@
+{
+    "name": "example",
+    "author": "btimby@gmail.com",
+    "version": "0.9.8",
+    "uuid": "f6da25b2-5ea7-4159-ad20-8a3a9958207f",
+    "description": "An example application.",
+    "service_definition": "example.yml",
+    "requires": [
+        "other-service",
+        "and-another=1.1"
+    ],
+    "conflicts": [
+        "other-service<2.3"
+    ],
+    "settings": [
+        "SHANTY_OAUTH_TOKEN",
+        "other-service.OTHER_SETTING"
+    ],
+    "options": {
+        "OPTION_A_ENABLED": {
+            "type": "boolean",
+            "description": "Toggles option A",
+            "default": true
+        }
+    },
+    "files": [
+        "example.cfg"
+    ]
+}

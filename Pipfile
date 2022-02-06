@@ -4,9 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-py-pgp = "*"
+pycosat = "*"
+pyyaml = "*"
+pynacl = "*"
 
 [dev-packages]
+parameterized = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3"
